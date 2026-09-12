@@ -17,6 +17,60 @@ st.set_page_config(
     layout="wide"
 )
 
+# ==========================================================
+# AMR-PULSE UI — BIOTECH DASHBOARD THEME
+# ==========================================================
+
+st.markdown("""
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+:root { --bg:#07111f; --panel:#0d1b2e; --line:#1e3852; --text:#e9f3ff; --muted:#8ea8c2; --cyan:#38d9e8; --green:#43d17a; }
+.stApp { background:radial-gradient(circle at 80% 0%,#102b45 0%,var(--bg) 42%,#050b14 100%); color:var(--text); font-family:'DM Sans',sans-serif; }
+[data-testid="stHeader"] { background:transparent; }
+[data-testid="stToolbar"] { visibility:hidden; }
+.block-container { max-width:1450px; padding:2rem 3rem 4rem; }
+section[data-testid="stSidebar"] { background:linear-gradient(180deg,#081525 0%,#06101d 100%); border-right:1px solid var(--line); }
+section[data-testid="stSidebar"] * { color:var(--text); }
+.sidebar-brand { padding:10px 4px 24px; }
+.sidebar-brand .mark { font-size:30px; }
+.sidebar-brand h2 { font-family:'Space Grotesk'; margin:4px 0 2px; font-size:24px; }
+.sidebar-brand p { color:var(--muted); font-size:12px; margin:0; }
+.nav-card { border:1px solid var(--line); background:rgba(13,27,46,.7); border-radius:14px; padding:14px; margin:8px 0; }
+.nav-card b { font-size:13px; }
+.nav-card span { display:block; color:var(--muted); font-size:11px; margin-top:3px; }
+.status-dot { color:var(--green); }
+.hero { border:1px solid #1e4c63; border-radius:24px; padding:28px 30px; background:linear-gradient(135deg,rgba(15,42,63,.96),rgba(10,22,39,.96)); box-shadow:0 18px 60px rgba(0,0,0,.22); margin-bottom:24px; position:relative; overflow:hidden; }
+.hero:after { content:''; position:absolute; width:220px; height:220px; right:-70px; top:-90px; border-radius:50%; background:rgba(56,217,232,.09); }
+.hero-kicker { color:var(--cyan); font-weight:700; letter-spacing:2px; font-size:11px; text-transform:uppercase; }
+.hero h1 { font-family:'Space Grotesk'; font-size:42px; margin:5px 0; letter-spacing:-1.5px; }
+.hero p { color:#a9c1d8; max-width:760px; margin:8px 0 0; font-size:15px; }
+.hero-flow { margin-top:20px; color:#cce5f4; font-size:12px; }
+h1,h2,h3 { font-family:'Space Grotesk',sans-serif !important; }
+.stMarkdown hr { border-color:var(--line); margin:28px 0; }
+label { color:#c7d8e9 !important; font-weight:600 !important; font-size:13px !important; }
+input,textarea,[data-baseweb="select"] > div { background:#0b192b !important; color:var(--text) !important; border-color:#24435e !important; border-radius:10px !important; }
+[data-baseweb="select"] span { color:var(--text) !important; }
+.stButton > button,.stDownloadButton > button { border-radius:11px !important; border:1px solid #2c5971 !important; background:linear-gradient(135deg,#12364d,#15536a) !important; color:white !important; font-weight:700 !important; min-height:44px; box-shadow:0 8px 22px rgba(0,0,0,.18); }
+.stButton > button:hover,.stDownloadButton > button:hover { transform:translateY(-1px); border-color:var(--cyan) !important; box-shadow:0 10px 28px rgba(56,217,232,.14); }
+[data-testid="stAlert"] { border-radius:12px !important; border:1px solid #23425c !important; background:#0c1d31 !important; }
+[data-testid="stMetric"] { background:linear-gradient(145deg,#0d1f33,#0a1728); border:1px solid var(--line); padding:15px; border-radius:14px; }
+[data-testid="stMetricValue"] { color:var(--cyan) !important; font-family:'Space Grotesk'; }
+[data-testid="stDataFrame"] { border:1px solid var(--line); border-radius:14px; overflow:hidden; }
+.stCaption { color:#7893ad !important; }
+@media(max-width:900px){ .block-container{padding:1rem 1rem 3rem;} .hero h1{font-size:31px;} }
+</style>
+""", unsafe_allow_html=True)
+
+with st.sidebar:
+    st.markdown("""<div class="sidebar-brand"><div class="mark">🧬</div><h2>AMR-PULSE</h2><p>Rapid AMR profiling & decision support</p></div>""", unsafe_allow_html=True)
+    st.markdown("### WORKSPACE")
+    for item, desc in [("01  Patient intake","Demographics & clinical context"),("02  AMR analysis","Local surveillance signals"),("03  AST workflow","Prioritize laboratory testing"),("04  Patient profile","Sensor / AST results"),("05  AMR passport","Longitudinal record"),("06  Decision support","Clinician review"),("07  Phage review","Research candidates")]:
+        st.markdown(f"<div class=\"nav-card\"><b>{item}</b><span>{desc}</span></div>", unsafe_allow_html=True)
+    st.markdown("### SYSTEM")
+    st.markdown("<div class=\"nav-card\"><b><span class=\"status-dot\">●</span> Prototype online</b><span>Research / hackathon environment</span></div>", unsafe_allow_html=True)
+
+
+
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data"
 
@@ -581,28 +635,74 @@ def database_status():
 # HEADER
 # ==========================================================
 
-st.title("🧬 AMR-PULSE")
-st.subheader("AI-Powered Rapid AMR Profiling & Decision Support")
+st.markdown("""<div class="hero"><div class="hero-kicker">AI-POWERED ANTIMICROBIAL RESISTANCE PLATFORM</div><h1>🧬 AMR-PULSE</h1><p>Rapid AMR profiling, surveillance intelligence and decision support — built as a research-grade hackathon prototype.</p><div class="hero-flow">PATIENT → SURVEILLANCE → AST → AMR PROFILE → PASSPORT → DECISION SUPPORT</div></div>""", unsafe_allow_html=True)
 
-st.markdown(
-    """
-### Data → Analysis → AMR Profile → AMR Passport → Decision Support
+# ==========================================================
+# COMMAND CENTER
+# ==========================================================
 
-**Patient information + symptoms + antibiotic history**  
-↓  
-**Local/country AMR surveillance analysis**  
-↓  
-**AST antibiotic prioritization**  
-↓  
-**Organism + sensor/AST result**  
-↓  
-**Patient-specific AMR Profile**  
-↓  
-**Longitudinal AMR Passport + trend/forecast**  
-↓  
-**Alternative antimicrobial and phage candidate review**
-"""
-)
+profile_now = pd.DataFrame(st.session_state.amr_profile) if st.session_state.amr_profile else pd.DataFrame()
+resistant_n = int((profile_now["AMR Classification"] == "Resistant").sum()) if not profile_now.empty else 0
+susceptible_n = int((profile_now["AMR Classification"] == "Susceptible").sum()) if not profile_now.empty else 0
+tested_n = len(profile_now)
+
+if st.session_state.patient_profile:
+    dash_patient = st.session_state.patient_profile["Patient Unique ID"]
+    dash_organism = organism if "organism" in globals() and organism != "Select" else "Pending"
+else:
+    dash_patient = "Not created"
+    dash_organism = "Pending"
+
+st.markdown("""
+<div class="section-band">
+  <div class="title">COMMAND CENTER</div>
+  <div class="tag">LIVE SESSION</div>
+</div>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+<div class="workflow">
+  <div class="step active">01 · PATIENT</div><div class="arrow">→</div>
+  <div class="step">02 · SURVEILLANCE</div><div class="arrow">→</div>
+  <div class="step">03 · AST</div><div class="arrow">→</div>
+  <div class="step">04 · AMR PROFILE</div><div class="arrow">→</div>
+  <div class="step">05 · PASSPORT</div><div class="arrow">→</div>
+  <div class="step">06 · DECISION</div>
+</div>
+""", unsafe_allow_html=True)
+
+st.markdown(f"""
+<div class="command-grid">
+  <div class="command-card accent">
+    <div class="eyebrow">Patient / Sample</div>
+    <div class="big" style="font-size:20px;">{dash_patient}</div>
+    <div class="small">Unique prototype identifier</div>
+  </div>
+  <div class="command-card">
+    <div class="eyebrow">Organism</div>
+    <div class="big" style="font-size:22px;">{dash_organism}</div>
+    <div class="small">Laboratory identification</div>
+  </div>
+  <div class="command-card {'danger' if resistant_n else 'success'}">
+    <div class="eyebrow">Resistance signals</div>
+    <div class="big">{resistant_n}</div>
+    <div class="small">Current resistant classifications</div>
+  </div>
+  <div class="command-card success">
+    <div class="eyebrow">AST / sensor results</div>
+    <div class="big">{tested_n}</div>
+    <div class="small">{susceptible_n} susceptible · session total</div>
+  </div>
+</div>
+""", unsafe_allow_html=True)
+
+if not st.session_state.patient_profile:
+    st.info("Start with **Patient Intake** below. The command center will populate automatically as the workflow progresses.")
+elif not profile_now.empty:
+    st.success("Patient-specific AMR data is active. Continue to **Organism Identification → Sensor / AST → AMR Profile**.")
+else:
+    st.info("Patient profile created. Continue to **Organism Identification** to activate the patient-specific analysis workflow.")
+
 
 st.warning(
     "RESEARCH / HACKATHON PROTOTYPE ONLY. The demonstration S/I/R "
@@ -614,7 +714,7 @@ st.warning(
 # ==========================================================
 
 st.markdown("---")
-st.header("1️⃣ Patient Details")
+st.markdown('<div class="section-band"><div class="title">01 · PATIENT INTAKE</div><div class="tag">PROFILE</div></div>', unsafe_allow_html=True)
 
 c1, c2, c3 = st.columns(3)
 
@@ -655,7 +755,7 @@ with c2:
 # ==========================================================
 
 st.markdown("---")
-st.header("2️⃣ Symptoms & Clinical Concern")
+st.markdown('<div class="section-band"><div class="title">02 · CLINICAL CONTEXT</div><div class="tag">CONTEXT</div></div>', unsafe_allow_html=True)
 
 infection_site = st.selectbox(
     "Suspected Infection Site",
@@ -695,7 +795,7 @@ patient_concerns = st.multiselect(
 # ==========================================================
 
 st.markdown("---")
-st.header("3️⃣ Antibiotic History")
+st.markdown('<div class="section-band"><div class="title">03 · ANTIBIOTIC HISTORY</div><div class="tag">EXPOSURE</div></div>', unsafe_allow_html=True)
 
 previous_antibiotics = st.multiselect(
     "Previous / current antibiotic use",
@@ -726,7 +826,7 @@ previous_antibiotics = st.multiselect(
 # ==========================================================
 
 st.markdown("---")
-st.header("4️⃣ Initial AMR Analysis")
+st.markdown('<div class="section-band"><div class="title">04 · AMR ANALYSIS</div><div class="tag">SURVEILLANCE</div></div>', unsafe_allow_html=True)
 
 if st.button(
     "🧠 Analyze Patient + Local AMR Data",
@@ -1019,7 +1119,7 @@ if st.session_state.analysis_run:
 # ==========================================================
 
 st.markdown("---")
-st.header("5️⃣ Organism Identification")
+st.markdown('<div class="section-band"><div class="title">05 · ORGANISM IDENTIFICATION</div><div class="tag">LAB</div></div>', unsafe_allow_html=True)
 
 organism = st.selectbox(
     "Organism identified by laboratory",
@@ -1065,7 +1165,7 @@ if organism != "Select":
 if organism != "Select":
 
     st.markdown("---")
-    st.header("6️⃣ Patient-Specific Sensor / AST Result")
+    st.markdown('<div class="section-band"><div class="title">06 · SENSOR / AST</div><div class="tag">RESULTS</div></div>', unsafe_allow_html=True)
 
     st.info(
         "Enter the negative control, positive control and "
@@ -1211,7 +1311,7 @@ if organism != "Select":
 # ==========================================================
 
 st.markdown("---")
-st.header("7️⃣ Current Patient-Specific AMR Profile")
+st.markdown('<div class="section-band"><div class="title">07 · PATIENT AMR PROFILE</div><div class="tag">PROFILE</div></div>', unsafe_allow_html=True)
 
 if st.session_state.amr_profile:
 
